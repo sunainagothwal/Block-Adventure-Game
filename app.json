@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Block Adventure",
+    "slug": "block-adventure-puzzle",
+    "description": "Block Adventure — Match. Blast. Solve. Explore. Drag blocks, clear lines, and travel 60 levels across 5 worlds.",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "blockadventure",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#22124F",
+    "primaryColor": "#FFC42E",
+    "newArchEnabled": true,
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-8313331375535073~1897190509",
+          "iosAppId": "ca-app-pub-3940256099942544~1458002511"
+        }
+      ]
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.blockadventure.puzzle",
+      "allowBackup": true,
+      "edgeToEdgeEnabled": true,
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.blockadventure.puzzle"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ccc081a0-ff21-4c67-a6ff-e22a7d89f4b7"
+      }
+    },
+    "owner": "s.sunainaa"
+  }
+}

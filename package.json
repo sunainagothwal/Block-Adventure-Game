@@ -1,0 +1,40 @@
+{
+  "name": "block-adventure-puzzle",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "audio": "node scripts/make-audio.js",
+    "check-audio": "node scripts/check-audio.js"
+  },
+  "dependencies": {
+    "@expo-google-fonts/lilita-one": "^0.4.1",
+    "@expo/material-symbols": "^0.1.1",
+    "@expo/ui": "~57.0.20",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~57.0.24",
+    "expo-audio": "~57.0.5",
+    "expo-font": "~57.0.4",
+    "expo-haptics": "~57.0.3",
+    "expo-linear-gradient": "~57.0.2",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-google-mobile-ads": "^17.2.0",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-worklets": "0.10.1"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.0",
+    "babel-preset-expo": "~57.0.12",
+    "typescript": "~5.9.2"
+  }
+}
