@@ -42,5 +42,5 @@ jobs:
 
       - name: Build on EAS
         env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.BLOCK_EXPO_TOKEN }}
         run: eas build --platform ${{ inputs.platform }} --profile ${{ inputs.profile }} --non-interactive
