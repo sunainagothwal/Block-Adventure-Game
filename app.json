@@ -9,7 +9,6 @@
     "userInterfaceStyle": "dark",
     "backgroundColor": "#22124F",
     "primaryColor": "#FFC42E",
-    "newArchEnabled": true,
     "plugins": [
       [
         "react-native-google-mobile-ads",
@@ -17,7 +16,8 @@
           "androidAppId": "ca-app-pub-8313331375535073~1897190509",
           "iosAppId": "ca-app-pub-3940256099942544~1458002511"
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -25,7 +25,6 @@
     "android": {
       "package": "com.blockadventure.puzzle",
       "allowBackup": true,
-      "edgeToEdgeEnabled": true,
       "softwareKeyboardLayoutMode": "pan"
     },
     "ios": {
