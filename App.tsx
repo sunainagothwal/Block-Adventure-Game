@@ -3968,11 +3968,16 @@ function GameScreen({
     adBusy.current = true;
     return showRewarded()
       .then((ok) => { if (ok) reward(); return ok; })
+      .catch(() => false)
       .finally(() => { adBusy.current = false; });
   }, []);
 
   /** Leaving a finished level is the natural moment for an interstitial, when one is due. */
-  const afterAd = useCallback((go: () => void) => () => { showInterstitial().then(go); }, []);
+  const afterAd = useCallback((go: () => void) => () => {
+    showInterstitial()
+      .then(() => { try { go(); } catch { /* navigation must never crash the app */ } })
+      .catch(() => {});
+  }, []);
 
   /* --- render ----------------------------------------------------------- */
 

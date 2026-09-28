@@ -136,17 +136,21 @@ let showing = false;
 
 function loadRewarded() {
   if (!sdk) return;
-  const ad = sdk.RewardedAd.createForAdRequest(unit('rewarded')) as unknown as AdLike;
-  rewarded = ad;
-  const off = [
-    ad.addAdEventListener(sdk.RewardedAdEventType.LOADED, () => setRewardedLoaded(true)),
-    ad.addAdEventListener(sdk.AdEventType.ERROR, () => {
-      off.forEach((f) => f());
-      setRewardedLoaded(false);
-      setTimeout(loadRewarded, 30_000); // no fill right now: try again in a while
-    }),
-  ];
-  ad.load();
+  try {
+    const ad = sdk.RewardedAd.createForAdRequest(unit('rewarded')) as unknown as AdLike;
+    rewarded = ad;
+    const off = [
+      ad.addAdEventListener(sdk.RewardedAdEventType.LOADED, () => setRewardedLoaded(true)),
+      ad.addAdEventListener(sdk.AdEventType.ERROR, () => {
+        off.forEach((f) => f());
+        setRewardedLoaded(false);
+        setTimeout(loadRewarded, 30_000); // no fill right now: try again in a while
+      }),
+    ];
+    ad.load();
+  } catch {
+    setTimeout(loadRewarded, 30_000); // a native throw here must never crash the app
+  }
 }
 
 /** Resolves true only when the player earned the reward (watched the ad through). */
@@ -176,7 +180,11 @@ export function showRewarded(): Promise<boolean> {
       ad.addAdEventListener(sdk!.AdEventType.CLOSED, done),
       ad.addAdEventListener(sdk!.AdEventType.ERROR, done),
     ];
-    ad.show().catch(done);
+    try {
+      ad.show().catch(done);
+    } catch {
+      done(); // a native throw here must never crash the app
+    }
   });
 }
 
@@ -188,17 +196,21 @@ let finishedLevels = 0;
 
 function loadInterstitial() {
   if (!sdk) return;
-  const ad = sdk.InterstitialAd.createForAdRequest(unit('interstitial')) as unknown as AdLike;
-  interstitial = ad;
-  interstitialLoaded = false;
-  const off = [
-    ad.addAdEventListener(sdk.AdEventType.LOADED, () => { interstitialLoaded = true; }),
-    ad.addAdEventListener(sdk.AdEventType.ERROR, () => {
-      off.forEach((f) => f());
-      setTimeout(loadInterstitial, 30_000);
-    }),
-  ];
-  ad.load();
+  try {
+    const ad = sdk.InterstitialAd.createForAdRequest(unit('interstitial')) as unknown as AdLike;
+    interstitial = ad;
+    interstitialLoaded = false;
+    const off = [
+      ad.addAdEventListener(sdk.AdEventType.LOADED, () => { interstitialLoaded = true; }),
+      ad.addAdEventListener(sdk.AdEventType.ERROR, () => {
+        off.forEach((f) => f());
+        setTimeout(loadInterstitial, 30_000);
+      }),
+    ];
+    ad.load();
+  } catch {
+    setTimeout(loadInterstitial, 30_000); // a native throw here must never crash the app
+  }
 }
 
 /**
@@ -226,7 +238,11 @@ export function showInterstitial(): Promise<void> {
       ad.addAdEventListener(sdk!.AdEventType.CLOSED, done),
       ad.addAdEventListener(sdk!.AdEventType.ERROR, done),
     ];
-    ad.show().catch(done);
+    try {
+      ad.show().catch(done);
+    } catch {
+      done(); // a native throw here must never crash the app
+    }
   });
 }
 
